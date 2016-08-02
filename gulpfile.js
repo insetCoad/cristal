@@ -4,7 +4,9 @@ var gulp = require("gulp"),
     merge = require("merge2"),
     jade = require("gulp-jade"),
     ts  =  require("gulp-typescript"),
+    bowerSrc = require("gulp-bower-src"),
     uglify = require("gulp-uglify"),
+    concat = require("gulp-concat"),
     plumber = require("gulp-plumber");
 
 /*| dir list |*/
@@ -69,4 +71,14 @@ gulp.task('tst', function() {
     return merge([
         tsResult.js.pipe(sourceMap.write("./source/")).pipe(gulp.dest(dir.pre + "/test/")),
     ]);
+});
+/*| bower copyLibs|*/
+gulp.task('lib', function() {
+    return gulp.src([
+            'bower_components/jquery/dist/jquery.js'
+        ])
+        .pipe(concat('lib.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(dir.pre + "/scripts/"))
+        .pipe(gulp.dest(dir.pub + "/scripts/"));
 });

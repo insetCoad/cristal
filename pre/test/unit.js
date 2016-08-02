@@ -1,0 +1,8 @@
+/// <reference path="../typings/index.d.ts" />
+describe('OnlyThe test case', function () {
+    it('should return 10 ', function () {
+        expect(test(5, 5)).toBe(10);
+    });
+});
+
+//# sourceMappingURL=source/unit.js.map

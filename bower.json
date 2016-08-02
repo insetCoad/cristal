@@ -1,0 +1,20 @@
+{
+  "name": "cristal",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "insetCoad <insetlive@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/insetCoad/cristal",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0"
+  }
+}

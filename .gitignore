@@ -1,5 +1,11 @@
 reated by https://www.gitignore.io/api/node,windows,bower,typings,visualstudiocode
 
+### Exclude this folders ###
+.pre
+.pub
+############################
+
+
 ### Node ###
 # Logs
 logs
@@ -72,7 +78,6 @@ bower_components
 ### Typings ###
 ## Ignore downloaded typings
 typings
-
 
 ### VisualStudioCode ###
 .vscode
