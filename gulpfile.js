@@ -20,7 +20,7 @@ var lst = {
     "ts":"/**/*.ts",
     "js":"/**/*.js"
 }
-gulp.task('default',["tsc",'scss',"jade","watch"]);
+gulp.task('default',["tsc",'scss',"jade","tst","watch"]);
 gulp.task('watch', function() {
     gulp.watch(dir.src + "/scss" + lst.scss, ['scss']);
     gulp.watch(dir.src + "/jade" + lst.jade, ['jade']);

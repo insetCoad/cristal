@@ -1,1 +1,0 @@
-{"version":3,"sources":["main.ts"],"names":[],"mappings":"AAAA,cAAc,CAAQ,EAAE,CAAQ;IAC5B,MAAM,CAAE,CAAC,CAAC,GAAG,CAAC,CAAC,CAAE;AACrB,CAAC","file":"main.js","sourcesContent":["function test(x:number, y:number) {\r\n    return  (x + y) ;\r\n}"],"sourceRoot":"/source/"}
