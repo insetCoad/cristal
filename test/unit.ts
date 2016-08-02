@@ -1,9 +1,7 @@
-
-describe('Name of the group', () => {
-    
-    it('xxxxx', () => {
-expect(10).toBe(10);
-    
+/// <reference path="../typings/index.d.ts" />
+describe('OnlyThe test case', () => {
+    it('should return 10 ', () => {
+        expect(10).toBe(10);
     });
         
 });

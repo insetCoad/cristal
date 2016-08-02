@@ -25,7 +25,7 @@ gulp.task('watch', function() {
     gulp.watch(dir.src + "/scss" + lst.scss, ['scss']);
     gulp.watch(dir.src + "/jade" + lst.jade, ['jade']);
     gulp.watch(dir.src + "/script" + lst.ts, ['tsc']);
-
+    gulp.watch(dir.test + lst.ts, ['tst']);
 });
 
 /*|scss compiler options |*/

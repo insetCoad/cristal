@@ -1,5 +1,6 @@
-describe('Name of the group', function () {
-    it('xxxxx', function () {
+/// <reference path="../typings/index.d.ts" />
+describe('OnlyThe test case', function () {
+    it('should return 10 ', function () {
         expect(10).toBe(10);
     });
 });
