@@ -3,6 +3,7 @@ var gulp = require("gulp"),
     sass = require("gulp-sass"),
     merge = require("merge2"),
     jade = require("gulp-jade"),
+    ts  =  require("gulp-typescript"),
     plumber = require("gulp-plumber");
 
 /*| dir list |*/
@@ -37,4 +38,21 @@ gulp.task('jade', function() {
 	        .pipe(jade({pretty:true}))
             .pipe(gulp.dest(dir.pre))
             .pipe(gulp.dest(dir.pub));
+});
+/*|Compiling TypeScript |*/
+
+gulp.task('tsc', function() {
+    var tsResult = gulp.src(dir.src + "/script" + lst.ts)
+        .pipe(sourceMap.init()) 
+        .pipe(ts({
+            declaration: true,
+            noExternalResolve: true,
+            removeComments :true
+        }));
+ 
+    return merge([
+        tsResult.dts.pipe(gulp.dest("./typings/cus")),
+        tsResult.js.pipe(sourceMap.write("./source/")).pipe(gulp.dest(dir.pre + "/scripts/")),
+        tsResult.js.pipe(gulp.dest(dir.pub + "/scripts/"))
+    ]);
 });
