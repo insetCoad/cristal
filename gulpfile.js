@@ -62,3 +62,11 @@ gulp.task('tsc', function() {
         tsResult.js.pipe(gulp.dest(dir.pub + "/scripts/"))
     ]);
 });
+gulp.task('tst', function() {
+    var tsResult = gulp.src(dir.test + lst.ts)
+        .pipe(sourceMap.init()) 
+        .pipe(ts());
+    return merge([
+        tsResult.js.pipe(sourceMap.write("./source/")).pipe(gulp.dest(dir.pre + "/test/")),
+    ]);
+});
