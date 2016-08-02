@@ -1,6 +1,8 @@
 var gulp = require("gulp"),
-    sourceMaps = require("gulp-sourcemaps"),
+    sourceMap = require("gulp-sourcemaps"),
     sass = require("gulp-sass"),
+    merge = require("merge2"),
+    jade = require("gulp-jade"),
     plumber = require("gulp-plumber");
 
 /*| dir list |*/
@@ -15,7 +17,7 @@ var lst = {
     "scss":"/**/*.scss",
     "ts":"/**/*.ts"
 }
-gulp.task('default',['sass']);
+gulp.task('default',['scss']);
 
 /*|scss compiler options |*/
 gulp.task('scss', function() {
@@ -28,4 +30,11 @@ gulp.task('scss', function() {
         //their is the main publish [pub] version
         scssRes.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError)).pipe(gulp.dest(dir.pub + "/css"))
     ])
+});
+/*| compiling jade |*/
+gulp.task('jade', function() {
+    return gulp.src(dir.src + "/jade" + lst.jade)
+	        .pipe(jade({pretty:true}))
+            .pipe(gulp.dest(dir.pre))
+            .pipe(gulp.dest(dir.pub));
 });
