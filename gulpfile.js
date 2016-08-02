@@ -4,6 +4,7 @@ var gulp = require("gulp"),
     merge = require("merge2"),
     jade = require("gulp-jade"),
     ts  =  require("gulp-typescript"),
+    uglify = require("gulp-uglify"),
     plumber = require("gulp-plumber");
 
 /*| dir list |*/
@@ -16,9 +17,16 @@ var dir = {
 var lst = {
     "jade":"/**/*.jade",
     "scss":"/**/*.scss",
-    "ts":"/**/*.ts"
+    "ts":"/**/*.ts",
+    "js":"/**/*.js"
 }
-gulp.task('default',['scss']);
+gulp.task('default',["tsc",'scss',"jade","watch"]);
+gulp.task('watch', function() {
+    gulp.watch(dir.src + "/scss" + lst.scss, ['scss']);
+    gulp.watch(dir.src + "/jade" + lst.jade, ['jade']);
+    gulp.watch(dir.src + "/script" + lst.ts, ['tsc']);
+
+});
 
 /*|scss compiler options |*/
 gulp.task('scss', function() {
@@ -46,10 +54,8 @@ gulp.task('tsc', function() {
         .pipe(sourceMap.init()) 
         .pipe(ts({
             declaration: true,
-            noExternalResolve: true,
-            removeComments :true
+            noExternalResolve: true
         }));
- 
     return merge([
         tsResult.dts.pipe(gulp.dest("./typings/cus")),
         tsResult.js.pipe(sourceMap.write("./source/")).pipe(gulp.dest(dir.pre + "/scripts/")),
