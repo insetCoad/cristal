@@ -14,7 +14,8 @@ var dir = {
     "src":"./src",
     "pre":"./pre",
     "pub":"./pub",
-    "test":"./test"
+    "test":"./test",
+    "dts":"./typings/**/**/*.d.ts"
 }
 var lst = {
     "jade":"/**/*.jade",
@@ -50,11 +51,11 @@ gulp.task('jade', function() {
             .pipe(gulp.dest(dir.pub));
 });
 /*|Compiling TypeScript |*/
-
 gulp.task('tsc', function() {
-    var tsResult = gulp.src(dir.src + "/script" + lst.ts)
+    var tsResult = gulp.src([dir.src + "/script" + lst.ts,dir.dts])
         .pipe(sourceMap.init()) 
         .pipe(ts({
+            target:"es5",
             declaration: true,
             noExternalResolve: true
         }));
@@ -65,7 +66,7 @@ gulp.task('tsc', function() {
     ]);
 });
 gulp.task('tst', function() {
-    var tsResult = gulp.src(dir.test + lst.ts)
+    var tsResult = gulp.src([dir.test + lst.ts,dir.dts])
         .pipe(sourceMap.init()) 
         .pipe(ts());
     return merge([
@@ -75,7 +76,8 @@ gulp.task('tst', function() {
 /*| bower copyLibs|*/
 gulp.task('lib', function() {
     return gulp.src([
-            'bower_components/jquery/dist/jquery.js'
+            'bower_components/jquery/dist/jquery.js',
+            //'bower_components/jasmine-jquery/lib/jasmine-jquery.js'
         ])
         .pipe(concat('lib.min.js'))
         .pipe(uglify())
